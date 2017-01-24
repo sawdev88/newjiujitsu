@@ -1,2 +1,155 @@
 // compileCompressed: ../build/css/main.min.css
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+body {
+  background: #000;
+  width: 100vw;
+  color: #fff;
+}
+
+html {
+  font-size: 1vw;
+  //display: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 6.5rem;
+}
+
+h2 {
+  display: inline-block;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+$ease: .3s ease-in-out;
+
+// Nav
+.page-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 18rem;
+  background: rgba(0,0,0,.8);
+  border-right: 2px solid #555;
+  padding: 6rem 0 0 0;
+
+  ul {
+    list-style: none;
+  }
+  li {
+    padding: 1rem 0 1rem 1.5rem;
+  }
+  a {
+    font-size: 2rem;
+    color: rgba(255,255,255,.75);
+  }
+}
+
+
+// Header
+.landing-banner {
+  position: relative;
+  top: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000, rgba(0,0,0,.75), transparent),     url('../../img/landing-banner.jpg') no-repeat center center fixed / cover;
+
+  .landing-container {
+    text-align: right;
+    position: absolute;
+    top: 12rem;
+    right: 10rem;
+  }
+
+  .logo {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    img {
+      width: 16rem;
+    }
+  }
+}
+
+// Body
+
+#about {
+  text-align: center;
+  height: 32rem;
+
+  .gi,
+  .no-gi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: $ease;
+
+    &:hover {
+      background: #666;
+      cursor: pointer;
+    }
+  }
+
+  .gi {
+    width: 60.5%;
+    float: left;
+    transform: skewX(-15deg);
+    margin-left: -8rem;
+
+
+    h2 {
+      transform: skewX(15deg);
+    }
+  }
+
+  .no-gi {
+    width: 55%;
+    float: right;
+    transform: skewX(-15deg);
+    margin-right: -8rem;
+
+    h2 {
+      transform: skewX(15deg);
+    }
+  }
+
+  .gi-container,
+  .no-gi-container {
+    clear: both;
+    display: none;
+    padding: 5rem 0;
+    transition: $ease;
+  }
+
+  .selected {
+    background: skyblue;
+
+    &:hover {
+      background: skyblue;
+    }
+  }
+
+  .active {
+    display: block;
+  }
+}
+
+#gear,
+#knowledge {
+  height: 100rem;
+  text-align: center;
+
+  h2 {
+    margin-top: 48rem;
+  }
+}
