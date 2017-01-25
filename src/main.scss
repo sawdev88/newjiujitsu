@@ -11,6 +11,12 @@ html {
   //display: none;
 }
 
+// Variables
+$ease: .3s ease-in-out;
+$blue: rgba(20,96,171,1);
+$white: rgba(255,255,255,.75);
+
+// Global Styles
 h1, h2, h3, h4, h5, h6, p, ul {
   margin: 0;
   padding: 0;
@@ -24,32 +30,70 @@ h2 {
   display: inline-block;
 }
 
+h3 {
+  display: inline-block;
+}
+
 p {
   font-size: 1.2rem;
 }
 
-$ease: .3s ease-in-out;
+span {
+  color: $blue;
+}
 
 // Nav
-.page-nav {
+.main-nav {
   position: fixed;
   top: 0;
-  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
-  width: 18rem;
-  background: rgba(0,0,0,.8);
+  width: 100%;
+  height: 4rem;
+  background: rgba(39,43,43,1);
   border-right: 2px solid #555;
-  padding: 6rem 0 0 0;
+  border-bottom: 4rem solid transparent;
+  transition: $ease;
+
+  .logo {
+    float: left;
+    display: inline-block;
+    vertical-align: middle;
+    height: 4rem;
+    line-height: 4rem;
+  }
 
   ul {
+    float: right;
     list-style: none;
+    height: 4rem;
+    line-height: 4rem;
+    overflow: hidden;
   }
   li {
-    padding: 1rem 0 1rem 1.5rem;
+    display: inline-block;
   }
   a {
     font-size: 2rem;
-    color: rgba(255,255,255,.75);
+    color: $white;
+    padding: .5rem 1rem;
+    transition: $ease;
+
+      &:hover {
+        text-decoration: none;
+        border-bottom: .5rem solid $white;
+        transition: .05s linear;
+      }
+    }
+
+  .active-area {
+    border-bottom: .5rem solid $blue;
+  }
+
+
+  &:hover {
+    margin-top: 0 !important;
   }
 }
 
