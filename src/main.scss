@@ -1,7 +1,7 @@
 // compileCompressed: ../build/css/main.min.css
 
 body {
-  background: #000;
+  background: #232323;
   width: 100vw;
   color: #fff;
 }
@@ -40,6 +40,20 @@ p {
 
 span {
   color: $blue;
+}
+
+.clear {
+  clear: both;
+}
+
+.vert-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  overflow: hidden;
 }
 
 // Nav
@@ -128,7 +142,7 @@ span {
 
 #about {
   text-align: center;
-  height: 32rem;
+  height: auto;
 
   .gi,
   .no-gi {
@@ -137,6 +151,7 @@ span {
     justify-content: center;
     height: 100%;
     transition: $ease;
+    height: 32rem;
 
     &:hover {
       background: #666;
@@ -173,13 +188,59 @@ span {
     display: none;
     padding: 5rem 0;
     transition: $ease;
+    height: 50rem;
+  }
+
+  .about-videos{
+    .video-nav {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+
+      li {
+        display: inline-block;
+        width: 25%;
+        height: 5rem;
+        line-height: 5rem;
+        background: #444;
+        transition: $ease;
+
+        &:hover{
+          background: $blue;
+          cursor: pointer;
+        }
+      }
+
+      .selected {
+        background: #343434;
+
+        &:hover {
+          cursor: default;
+          background: #343434;
+        }
+      }
+    }
+
+    .video-container {
+      background: #343434;
+
+      height: 50rem;
+
+      .video-area {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+    }
   }
 
   .selected {
-    background: skyblue;
+    background: $blue;
 
     &:hover {
-      background: skyblue;
+      background: $blue;
     }
   }
 

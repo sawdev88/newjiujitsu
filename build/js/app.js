@@ -13,9 +13,12 @@ var giTab = document.querySelector('.gi');
 var noGiTab = document.querySelector('.no-gi');
 var giContainer = document.querySelector('.gi-container');
 var noGiContainer = document.querySelector('.no-gi-container');
+var aboutVideoList = document.querySelectorAll('.video-nav li');
+var aboutVideoAreas = document.querySelectorAll('.video-area');
 
 var gearArea = document.querySelector('#gear');
 
+// Scrool to area
 var scroolToArea = function (section) {
   section.scrollIntoView({
     behavior: 'smooth'
@@ -28,6 +31,7 @@ var activeNav = function (element) {
   element.classList = ' active-area';
 }
 
+// Clear classes from nav elements
 var clearNav = function () {
   for (var i = 0; i < navElements.length; i++) {
     var x = navElements[i].classList;
@@ -38,12 +42,18 @@ var clearNav = function () {
   }
 }
 
+// Clear li lists
+var clearList = function (arr, removeClass) {
+  [].forEach.call(arr, function(el) {
+    el.classList.remove(removeClass);
+  });
+}
 
 // if (enterSite === 'newjits') {
 //   doc.style.display = 'block';
 // }
 
-// Nav
+// Nav Logic
 window.addEventListener('scroll', function () {
   var position = window.pageYOffset;
   var aboutDivPosition = aboutArea.offsetTop;
@@ -90,3 +100,32 @@ noGiTab.addEventListener('click', function () {
 
   scroolToArea(aboutArea);
 })
+
+// About Videos list
+
+for (var i = 0; i < aboutVideoList.length; i++) {
+  // Remove selected tab from all items then add selected to this
+  aboutVideoList[i].addEventListener('click', function () {
+    // get tab's name
+    var selectedTab = this.innerText;
+    selectedTab = selectedTab.toLowerCase();
+
+    // Clear selected tabs active state
+    clearList(aboutVideoList, 'selected');
+
+    // Add newly selected tab with active state
+    this.classList += ' selected';
+
+    // Handle video container
+    [].forEach.call(aboutVideoAreas, function(el) {
+      // Remove .active from all divs
+      el.classList.remove('active');
+
+      // Make container visible when tab is selected
+      if (el.classList.contains(selectedTab)) {
+        var x = document.querySelector('.' + selectedTab.toString());
+        x.classList += ' active';
+      }
+    });
+  })
+}
