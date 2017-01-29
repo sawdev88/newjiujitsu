@@ -2,6 +2,8 @@
 // var enterSite = prompt('Ener Password');
 var doc = document.querySelector('html');
 var windowTop = document.documentElement.scrollTop;
+var lightBoxOverLay = document.querySelector('.lightbox-overlay');
+var lightBoxEmbed = document.querySelector('.lightbox-overlay iframe');
 
 var nav = document.querySelector('.main-nav');
 var navElements = document.querySelectorAll('.main-nav ul a');
@@ -15,6 +17,7 @@ var giContainer = document.querySelector('.gi-container');
 var noGiContainer = document.querySelector('.no-gi-container');
 var aboutVideoList = document.querySelectorAll('.video-nav li');
 var aboutVideoAreas = document.querySelectorAll('.video-area');
+var lightboxElement = document.querySelectorAll('.lightbox');
 
 var gearArea = document.querySelector('#gear');
 
@@ -77,6 +80,7 @@ window.addEventListener('scroll', function () {
 
 
 // About Container
+
 giTab.addEventListener('click', function () {
   // Give selected div active class
   noGiTab.classList.remove('selected');
@@ -100,6 +104,7 @@ noGiTab.addEventListener('click', function () {
 
   scroolToArea(aboutArea);
 })
+
 
 // About Videos list
 
@@ -129,3 +134,36 @@ for (var i = 0; i < aboutVideoList.length; i++) {
     });
   })
 }
+
+
+// Lightbox Logic
+
+for (var i = 0; i < lightboxElement.length; i++) {
+  lightboxElement[i].addEventListener('click', function (el) {
+
+    // Get Video link via data-attr
+    if (this.hasAttribute('data-video')) {
+      var embedURL = 'https://www.youtube.com/embed/' + this.dataset.video + '?autoplay=1';
+      console.log(embedURL);
+
+      // Show lightbox
+      lightBoxOverLay.classList += ' show-lightbox';
+
+      // Prevent scroll when lightbox is open
+      doc.classList += ' prevent-scroll';
+
+      // Set video
+      lightBoxEmbed.setAttribute('src', embedURL);
+    }
+  })
+}
+
+lightBoxOverLay.addEventListener('click', function () {
+  this.classList.remove('show-lightbox');
+
+  // Allow scroll
+  doc.classList.remove('prevent-scroll');
+
+  // Stop iframe
+  lightBoxEmbed.setAttribute('src', '');
+})
