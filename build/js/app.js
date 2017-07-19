@@ -5,12 +5,15 @@ var windowTop = document.documentElement.scrollTop;
 var lightBoxOverLay = document.querySelector('.lightbox-overlay');
 var lightBoxEmbed = document.querySelector('.lightbox-overlay iframe');
 
+// Nav
 var nav = document.querySelector('.main-nav');
 var navElements = document.querySelectorAll('.main-nav ul a');
 var aboutLink = document.querySelector('.about');
+var knowledgeLink = document.querySelector('.knowledge');
 var gearLink = document.querySelector('.gear');
 
-var aboutArea = document.querySelector('#about');
+// About Area
+var aboutArea = document.getElementById('about');
 var giTab = document.querySelector('.gi');
 var noGiTab = document.querySelector('.no-gi');
 var giContainer = document.querySelector('.gi-container');
@@ -19,10 +22,17 @@ var aboutVideoList = document.querySelectorAll('.video-nav li');
 var aboutVideoAreas = document.querySelectorAll('.video-area');
 var lightboxElement = document.querySelectorAll('.lightbox');
 
-var gearArea = document.querySelector('#gear');
+var knowledgeArea = document.getElementById('knowledge');
+var gearArea = document.getElementById('gear');
 
-// Scrool to area
-var scroolToArea = function (section) {
+// Top offsets
+var aboutDivPosition = aboutArea.offsetTop;
+var knowledgeDivPosition = knowledgeArea.offsetTop;
+var gearDivPosition = gearArea.offsetTop;
+
+
+// Scroll to area
+var scrollToArea = function (section) {
   section.scrollIntoView({
     behavior: 'smooth'
   });
@@ -59,20 +69,23 @@ var clearList = function (arr, removeClass) {
 // Nav Logic
 window.addEventListener('scroll', function () {
   var position = window.pageYOffset;
-  var aboutDivPosition = aboutArea.offsetTop;
-  var gearDivPosition = gearArea.offsetTop;
 
   if (position > aboutDivPosition) {
     // Hide nav
     nav.style.marginTop = '-3.25rem';
     activeNav(aboutLink);
-
   } else {
     // Show nav
     nav.style.marginTop = '0';
     clearNav();
   }
 
+  // Highlight knowledgeArea
+  if (position > knowledgeDivPosition) {
+    activeNav(knowledgeLink);
+  }
+
+  // Highlight gearArea
   if (position > gearDivPosition) {
     activeNav(gearLink);
   }
@@ -80,34 +93,28 @@ window.addEventListener('scroll', function () {
 
 
 // About Container
-
 giTab.addEventListener('click', function () {
   // Give selected div active class
-  noGiTab.classList.remove('selected');
-  this.classList += ' selected';
+  noGiTab.classList.remove('selected-gi');
+  this.classList += ' selected-gi';
 
   // Give selcted tab's container focus
   noGiContainer.classList.remove('active');
   giContainer.classList += ' active';
-
-  scroolToArea(aboutArea);
 })
 
 noGiTab.addEventListener('click', function () {
   // Give selected div active class
-  giTab.classList.remove('selected');
-  this.classList += ' selected';
+  giTab.classList.remove('selected-gi');
+  this.classList += ' selected-gi';
 
   // Give selcted tab's container focus
   giContainer.classList.remove('active');
   noGiContainer.classList += ' active';
-
-  scroolToArea(aboutArea);
 })
 
 
 // About Videos list
-
 for (var i = 0; i < aboutVideoList.length; i++) {
   // Remove selected tab from all items then add selected to this
   aboutVideoList[i].addEventListener('click', function () {
@@ -137,7 +144,6 @@ for (var i = 0; i < aboutVideoList.length; i++) {
 
 
 // Lightbox Logic
-
 for (var i = 0; i < lightboxElement.length; i++) {
   lightboxElement[i].addEventListener('click', function (el) {
 

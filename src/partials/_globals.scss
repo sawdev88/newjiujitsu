@@ -1,0 +1,47 @@
+body {
+  background: #232323;
+  width: 100vw;
+  color: #fff;
+}
+
+html {
+  font-size: 1vw;
+  //display: none;
+}
+
+// Variables
+$ease: .3s ease-in-out;
+$blue: rgba(20,96,171,1);
+$white: rgba(255,255,255,.75);
+
+// Global Styles
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 6.5rem;
+}
+
+h2 {
+  display: inline-block;
+}
+
+h3 {
+  display: inline-block;
+  font-size: 2.25rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+span {
+  color: $blue;
+}
+
+main {
+  overflow: hidden;
+  z-index: 0;
+}
